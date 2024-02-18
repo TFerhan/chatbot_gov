@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-
+import os
 
 headers = {
     'Content-Type': 'text/html; charset=utf-8',
@@ -170,4 +170,41 @@ def get_links_pr(producteur):
             typ.append([ i.text.strip() for i in tp])
     return titles, links, typ, description
 
-print(len(get_links_pr('HCP')[0]))
+def verf_link_th(theme , link):
+    if verf_theme(theme):
+        titles, links, typ, description = get_links_th(theme)
+        if link in links:
+            return True
+    return False
+
+def verf_link_pr(producteur , link):
+    if verf_producteur(producteur):
+        titles, links, typ, description = get_links_pr(producteur)
+        if link in links:
+            return True
+    return False
+
+def get_details_link(link):
+    response = requests.get(link, headers=headers)
+    if response.status_code != 200:
+        return [], [], [], [], [], [], [], [], [], []
+    nom_file, extension, appercu_link,  down_link, tags, date_creation, date_update = [], [], [], [], [], [], []
+    soup = BeautifulSoup(response.text, features="lxml")
+    down = soup.find('section', class_ = 'resources').find_all('li', class_ = 'resource-item')
+    for d in down:
+        nmf = d.find('a').text
+        name, ext = os.path.splitext(nmf)
+        nom_file.append(name.strip())
+        extension.append(ext.strip())
+        appercu_link.append('https://data.gov.ma'+d.find('a')['href'])
+        down_link.append(d.find('div', class_ = 'dropdown').find('a', class_ = 'resource-url-analytics')['href'])
+    tag = soup.find('section', class_ = 'tags').find_all('li')
+    for t in tag:
+        tags.append(t.text.strip())
+    info = soup.find('section', class_ = 'additional-info').find_all('td')
+    date_creation.append(info[1].text.strip())
+    date_update.append(info[0].text.strip())
+    return nom_file, extension, appercu_link, down_link, tags, date_creation, date_update
+
+
+
