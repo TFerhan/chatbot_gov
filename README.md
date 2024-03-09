@@ -134,5 +134,5 @@ Il est à noter que ce modèle peut être utilisé de la même manière pour cr�
 
 Repo dans Hugging Face : [HF Repo Source Files](https://huggingface.co/spaces/tferhan/data_gov_ma/tree/main){:target="_blank"}
 
-Enfin, ce projet a été réalisé dans le cadre d'un stage émis par Open Data Gov MA. Si vous souhaitez en savoir plus sur mon parcours ou me contacter, vous pouvez consulter mon profil LinkedIn : [Profil LinkedIn](https://www.linkedin.com/in/tferhan/){:target="_blank"}.
+Enfin, ce projet a été réalisé dans le cadre d'un stage émis par Open Data Gov MA. Si vous souhaitez en savoir plus sur mon parcours ou me contacter, vous pouvez consulter mon profil LinkedIn : <a href="Profile LinkedIn" target="_blank">https://www.linkedin.com/in/tferhan/</a>.
 
