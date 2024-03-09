@@ -67,7 +67,7 @@ La fonction `conversation` est utilisée pour obtenir une réponse à une questi
 
 ## Déploiement
 
-Vous pouvez essayer une démo du chatbot en ligne en accédant au lien suivant : [Démo du Chatbot](https://huggingface.co/spaces/skalilopa/data_gov_ma). Cette démo vous permettra d'interagir avec le chatbot et de poser des questions dans le contexte du PDF.
+Vous pouvez essayer une démo du chatbot en ligne en accédant au lien suivant : [Démo du Chatbot](https://huggingface.co/spaces/tferhan/data_gov_ma). Cette démo vous permettra d'interagir avec le chatbot et de poser des questions dans le contexte du PDF.
 
 ## API
 
@@ -98,4 +98,41 @@ const result = await app.predict("/chat", [
 
 console.log(result.data);
 ```
+## Issues
+
+Veuillez noter les points suivants concernant l'utilisation de l'API du chatbot :
+
+- L'API peut passer en mode sommeil après 48 heures d'inactivité. Pour éviter cela, vous pouvez souscrire à un plan payant pour maintenir l'API active, ou bien déployer le code sur votre propre hébergement ou machine. Le déploiement sur votre propre hébergement nécessite moins de 0.5 Go de stockage, ce qui est peu contraignant.
+
+- Bien que le modèle comprenne le français et l'anglais, ainsi que trois autres langues, il répond généralement en anglais, même si le document donné est en français. Parfois, il peut répondre en français, mais cela peut varier en fonction du contexte de la question et de la réponse.
+
+## Contexte du Projet
+
+La création d'un modèle d'IA à partir de zéro s'avère être une tâche complexe, notamment en raison du besoin de grandes quantités de données, souvent indisponibles pour les individus. Par conséquent, j'ai opté pour l'utilisation d'un modèle pré-entraîné, qui offre déjà des performances solides sur une large gamme de tâches.
+
+De plus, l'utilisation de modèles de classification de texte pré-entraînés s'est révélée difficile en raison de la nécessité de disposer de grandes quantités de paires de questions-réponses pour obtenir de bons résultats, ce qui est souvent fastidieux et chronophage, avec une précision généralement faible. En revanche, les modèles de génération de texte offrent une plus grande adaptabilité et des performances plus satisfaisantes dans divers scénarios.
+
+Si vous souhaitez explorer d'autres modèles, voici une liste de modèles supplémentaires que vous pourriez envisager d'essayer :
+
+- "mistralai/Mistral-7B-Instruct-v0.2"
+- "mistralai/Mixtral-8x7B-Instruct-v0.1"
+- "mistralai/Mistral-7B-Instruct-v0.1"
+- "google/gemma-7b-it"
+- "google/gemma-2b-it"
+- "HuggingFaceH4/zephyr-7b-beta"
+- "HuggingFaceH4/zephyr-7b-gemma-v0.1"
+- "meta-llama/Llama-2-7b-chat-hf"
+- "microsoft/phi-2"
+- "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+- "mosaicml/mpt-7b-instruct"
+- "tiiuae/falcon-7b-instruct"
+- "google/flan-t5-xxl"
+
+Pour les embeddings, Chroma DB, une bibliothèque open source qui offre des fonctionnalités de recherche sémantique robustes.
+
+Il est à noter que ce modèle peut être utilisé de la même manière pour créer des chatbots sur d'autres sites web ou pour un usage personnel, offrant une solution polyvalente pour une variété de cas d'utilisation.
+
+Repo dans Hugging Face : [HF Repo Source Files](https://huggingface.co/spaces/tferhan/data_gov_ma/tree/main)
+
+Enfin, ce projet a été réalisé dans le cadre d'un stage émis par Open Data Gov MA. Si vous souhaitez en savoir plus sur mon parcours ou me contacter, vous pouvez consulter mon profil LinkedIn : [Profil LinkedIn](https://www.linkedin.com/in/tferhan/).
 
