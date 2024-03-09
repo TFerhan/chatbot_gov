@@ -29,7 +29,6 @@ Cette fonction représente une conversation entre un utilisateur et un assistant
 - `vec_cre`: Variable contenant une autre instance de la base de données vectorielle initialisée.
 - `qa`: Variable contenant la chaîne de traitement de modèle de langage initialisée.
 
-Voici une section que vous pourriez ajouter à votre fichier README.md pour documenter le fine-tuning du modèle :
 
 
 ## Fine-tuning du modèle
@@ -49,7 +48,6 @@ Outre l'utilisation de modèles pré-entraînés, vous pouvez également entraî
 
 La fonction `initialize_llmchain` permet également de modifier les hyperparamètres du modèle, tels que la température, le nombre maximal de jetons générés (`max_tokens`), et le paramètre `top_k`. Vous pouvez ajuster ces hyperparamètres en fonction des besoins de votre tâche spécifique, afin d'optimiser les performances du modèle.
 
-Voici une section d'utilisation que vous pouvez ajouter à votre fichier README.md :
 
 
 ## Utilisation
@@ -67,7 +65,7 @@ La fonction `conversation` est utilisée pour obtenir une réponse à une questi
 
 ## Déploiement
 
-Vous pouvez essayer une démo du chatbot en ligne en accédant au lien suivant : [Démo du Chatbot](https://huggingface.co/spaces/tferhan/data_gov_ma){:target="_blank"}. Cette démo vous permettra d'interagir avec le chatbot et de poser des questions dans le contexte du PDF.
+Vous pouvez essayer une démo du chatbot en ligne en accédant au lien suivant : [Démo du Chatbot](https://huggingface.co/spaces/tferhan/data_gov_ma). Cette démo vous permettra d'interagir avec le chatbot et de poser des questions dans le contexte du PDF.
 
 ## API
 
@@ -132,7 +130,9 @@ Pour les embeddings, Chroma DB, une bibliothèque open source qui offre des fonc
 
 Il est à noter que ce modèle peut être utilisé de la même manière pour créer des chatbots sur d'autres sites web ou pour un usage personnel, offrant une solution polyvalente pour une variété de cas d'utilisation.
 
-Repo dans Hugging Face : [HF Repo Source Files](https://huggingface.co/spaces/tferhan/data_gov_ma/tree/main){:target="_blank"}
+Repo dans Hugging Face : [HF Repo Source Files](https://huggingface.co/spaces/tferhan/data_gov_ma/tree/main)
 
-Enfin, ce projet a été réalisé dans le cadre d'un stage émis par Open Data Gov MA. Si vous souhaitez en savoir plus sur mon parcours ou me contacter, vous pouvez consulter mon profil LinkedIn : <a href="Profile LinkedIn" target="_blank">https://www.linkedin.com/in/tferhan/</a>.
+Enfin, ce projet a été réalisé dans le cadre d'un stage émis par Open Data Gov MA. Si vous souhaitez en savoir plus sur mon parcours ou me contacter, vous pouvez consulter mon profil LinkedIn :
+- **Ferhan Taha**
+  - LinkedIn: [Ferhan Taha on LinkedIn](https://www.linkedin.com/in/tferhan/)
 
