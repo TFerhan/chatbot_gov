@@ -98,7 +98,7 @@ def initialize_llmchain(temperature, max_tokens, top_k, vector_db):
     )
     return qa_chain
 
-qa = initialize_llmchain(0.7, 1024, 1, vec_cre) #The model question answer
+qa = initialize_llmchain(0.7, 1024, 40, vec_cre) #The model question answer
 
 def format_chat_history(message, chat_history):
     formatted_chat_history = []
