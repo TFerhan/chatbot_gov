@@ -39,7 +39,7 @@ Le processus de fine-tuning, ou affinage en français, permet d'adapter un modè
 ### Entraînement sur différents modèles
 
 Le paramètre `repo_id` dans la fonction `initialize_llmchain` permet de spécifier le modèle Hugging Face à utiliser pour le fine-tuning. Vous pouvez remplacer la valeur actuelle (`mistralai/Mixtral-8x7B-Instruct-v0.1`) par l'identifiant d'un autre modèle disponible sur la plateforme Hugging Face. Cela vous permet d'explorer différents modèles pour trouver celui qui convient le mieux à votre tâche spécifique.
-Ce modèle était adéquat tant qu'il comprend 5 languages différentes.
+Ce modèle était adéquat tant qu'il comprend 5 langues différentes.
 
 ### Entraînement sur des données personnalisées
 
