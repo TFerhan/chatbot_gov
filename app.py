@@ -26,7 +26,7 @@ import accelerate
 def load_doc(file_path):
     loader = PyPDFLoader(file_path)
     pages = loader.load()
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size = 600, chunk_overlap = 50)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size = 1024, chunk_overlap = 128)
     doc_splits = text_splitter.split_documents(pages)
     return doc_splits
 
@@ -98,7 +98,10 @@ def initialize_llmchain(temperature, max_tokens, top_k, vector_db):
     )
     return qa_chain
 
-qa = initialize_llmchain(0.7, 1024, 40, vec_cre) #The model question answer
+qa = initialize_llmchain(0.6, 1024, 40, vec_cre) #The model question answer
+
+pipe = pipeline("translation", model="Helsinki-NLP/opus-mt-en-fr") # This pipeline translate english to french , it isn't adviced as it add more latency
+
 
 def format_chat_history(message, chat_history):
     formatted_chat_history = []
@@ -123,8 +126,11 @@ def conversation(message, history):
     response_source1_page = response_sources[0].metadata["page"] + 1
     response_source2_page = response_sources[1].metadata["page"] + 1
     response_source3_page = response_sources[2].metadata["page"] + 1
-
+    #If you want the return in english leave it at :
     return response_answer
+
+    #If you want the return in french
+    #return pipe(response_answer)[0]['translation_text'] + " (Traduis d'anglais en français)"
 
 
 
