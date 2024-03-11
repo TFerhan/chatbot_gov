@@ -5,7 +5,7 @@ Ce document est une documentation du code Python app.py fourni. Il décrit les f
 ## Fonctions principales
 
 ### load_doc(file_path)
-Cette fonction charge un document PDF à partir du chemin spécifié et le divise en pages. Elle utilise la classe `PyPDFLoader` pour charger le document et la classe `RecursiveCharacterTextSplitter` pour diviser le texte en chunks.
+Cette fonction charge un document PDF à partir du chemin spécifié et le divise en pages. Elle utilise la classe `PyPDFLoader` pour charger le document et la classe `RecursiveCharacterTextSplitter` pour diviser le texte en chunks. Les variables `chunk_size` et `chunk_overlap` sont aussi à fine-tuner. 
 
 ### initialize_database(file_path)
 Cette fonction initialise une base de données vectorielle à partir du document PDF spécifié. Elle utilise la fonction `load_doc` pour charger le document, puis crée une base de données vectorielle à l'aide de la fonction `create_db`.
@@ -15,6 +15,9 @@ Cette fonction crée une base de données vectorielle à partir des fragments de
 
 ### initialize_llmchain(temperature, max_tokens, top_k, vector_db)
 Cette fonction initialise une chaîne de traitement de modèle de langage avec un modèle Hugging Face. Elle utilise une base de données vectorielle spécifiée pour la récupération de documents et crée une chaîne de traitement de conversation à l'aide de la classe `HuggingFaceEndpoint`, cette dernière prend en arguments aussi la variable huggingfacehub_api_token qui est l'access token de HuggingFace. Pour plus de sécurité il est mieux de le définir avec les variables d'environement.
+
+### Pipeline de Traduction (Modèle : Helsinki-NLP/opus-mt-en-fr)
+Cette fonction renvoie un modèle capable de traduire des chaînes de caractères de l'anglais vers le français. Il offre une grande précision, bien que facultativement il puisse introduire une latence dans la sortie. 
 
 ### format_chat_history(message, chat_history)
 Cette fonction formate l'historique de chat sous forme de messages utilisateur et assistant, pour une meilleure lisibilité. Elle prend un message utilisateur et l'historique de chat comme entrée et retourne l'historique formaté.
@@ -102,7 +105,7 @@ Veuillez noter les points suivants concernant l'utilisation de l'API du chatbot 
 
 - L'API peut passer en mode sommeil après 48 heures d'inactivité. Pour éviter cela, vous pouvez souscrire à un plan payant pour maintenir l'API active, ou bien déployer le code sur votre propre hébergement ou machine. Le déploiement sur votre propre hébergement nécessite moins de 0.5 Go de stockage, ce qui est peu contraignant.
 
-- Bien que le modèle comprenne le français et l'anglais, ainsi que trois autres langues, il répond généralement en anglais, même si le document donné est en français. Parfois, il peut répondre en français, mais cela peut varier en fonction du contexte de la question et de la réponse.
+- Bien que le modèle comprenne le français et l'anglais, ainsi que trois autres langues, il répond généralement en anglais, même si le document donné est en français. Parfois, il peut répondre en français, mais cela peut varier en fonction du contexte de la question et de la réponse. S'il y a une necessité de retour en français le pipeline de traduction peut intervenir mais c'est déconseillé.
 
 ## Contexte du Projet
 
