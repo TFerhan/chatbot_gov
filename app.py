@@ -72,11 +72,12 @@ vec_cre = create_db(splt, 'data')
 
 
 def initialize_llmchain(temperature, max_tokens, top_k, vector_db):
-    memory = ConversationBufferMemory(
-        memory_key="chat_history",
-        output_key='answer',
-        return_messages=True
-    )
+    #Pour que le model memorize l'historique de la conversation, ici non necessaire car simplement il repond depuis le document
+    # memory = ConversationBufferMemory(
+    #     memory_key="chat_history",
+    #     output_key='answer',
+    #     return_messages=True
+    # )
 
     llm = HuggingFaceEndpoint(
             repo_id='mistralai/Mixtral-8x7B-Instruct-v0.1',
@@ -92,7 +93,7 @@ def initialize_llmchain(temperature, max_tokens, top_k, vector_db):
         llm,
         retriever=retriever,
         chain_type="stuff",
-        memory=memory,
+        #memory=memory,
         return_source_documents=True,
         verbose=False,
     )
@@ -102,19 +103,19 @@ qa = initialize_llmchain(0.6, 1024, 40, vec_cre) #The model question answer
 
 pipe = pipeline("translation", model="Helsinki-NLP/opus-mt-en-fr") # This pipeline translate english to french , it isn't adviced as it add more latency
 
-
-def format_chat_history(message, chat_history):
-    formatted_chat_history = []
-    for user_message, bot_message in chat_history:
-        formatted_chat_history.append(f"User: {user_message}")
-        formatted_chat_history.append(f"Assistant: {bot_message}")
-    return formatted_chat_history
+#Si vous voulez developper une conversation
+# def format_chat_history(message, chat_history):
+#     formatted_chat_history = []
+#     for user_message, bot_message in chat_history:
+#         formatted_chat_history.append(f"User: {user_message}")
+#         formatted_chat_history.append(f"Assistant: {bot_message}")
+#     return formatted_chat_history
 
 def conversation(message, history):
-    formatted_chat_history = format_chat_history(message, history)
+    #formatted_chat_history = format_chat_history(message, history)
 
     # Generate response using QA chain
-    response = qa({"question": message, "chat_history": formatted_chat_history})
+    response = qa({"question": message, "chat_history": [] #formatted_chat_history})
     response_answer = response["answer"]
     if response_answer.find("Helpful Answer:") != -1:
         response_answer = response_answer.split("Helpful Answer:")[-1]
